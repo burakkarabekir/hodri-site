@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Doğrulama · Hodri</title>
+<meta name="description" content="Hodri misafir girişi doğrulaması. Hodri guest sign-in verification.">
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<main>
+  <header class="top">
+    <a class="mark" href="/">HODRI</a>
+  </header>
+
+  <section id="tr">
+    <h1>Doğrulanıyor</h1>
+    <p>Bu sayfa, Hodri uygulamasında misafir olarak başlarken cihazının gerçek bir oyuncuya ait olduğunu doğrular. Uygulama onu arka planda açar ve işi bitince kapatır.</p>
+    <p class="muted">Bu site reCAPTCHA ile korunmaktadır; Google <a href="https://policies.google.com/privacy">Gizlilik Politikası</a> ve <a href="https://policies.google.com/terms">Hizmet Şartları</a> geçerlidir.</p>
+  </section>
+
+  <hr>
+
+  <section id="en" lang="en">
+    <h1>Verifying</h1>
+    <p>This page checks that a device starting Hodri as a guest belongs to a real player. The app opens it in the background and closes it when it is done.</p>
+    <p class="muted">This site is protected by reCAPTCHA and the Google <a href="https://policies.google.com/privacy">Privacy Policy</a> and <a href="https://policies.google.com/terms">Terms of Service</a> apply.</p>
+  </section>
+
+  <footer>
+    <p><a href="/">hodri.app</a> · <a href="/privacy/">Gizlilik / Privacy</a></p>
+  </footer>
+</main>
+<script>
+(() => {
+  const SITE_KEY = "6LdWM9EtAAAAAEQ70NKKbCeh_blDjW3agWpNGp10"
+  const send = (message) => {
+    if (typeof hodriVerify !== "undefined") hodriVerify.postMessage(JSON.stringify(message))
+  }
+  if (SITE_KEY === "") {
+    send({ error: "unconfigured" })
+    return
+  }
+  const recaptcha = document.createElement("script")
+  recaptcha.src = `https://www.google.com/recaptcha/enterprise.js?render=${encodeURIComponent(SITE_KEY)}`
+  recaptcha.async = true
+  recaptcha.onerror = () => send({ error: "script_load" })
+  recaptcha.onload = () => {
+    grecaptcha.enterprise.ready(async () => {
+      try {
+        send({ token: await grecaptcha.enterprise.execute(SITE_KEY, { action: "signup" }) })
+      } catch (error) {
+        send({ error: String(error).slice(0, 200) })
+      }
+    })
+  }
+  document.head.appendChild(recaptcha)
+})()
+</script>
+</body>
+</html>
