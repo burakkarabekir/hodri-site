@@ -6,6 +6,50 @@
 <meta name="robots" content="noindex">
 <title>Doğrulama · Hodri</title>
 <meta name="description" content="Hodri misafir girişi doğrulaması. Hodri guest sign-in verification.">
+<link rel="preconnect" href="https://www.google.com">
+<link rel="preconnect" href="https://www.gstatic.com" crossorigin>
+<script>
+(() => {
+  const SITE_KEY = "6LdWM9EtAAAAAEQ70NKKbCeh_blDjW3agWpNGp10"
+  const reportsProgress = new URLSearchParams(location.search).get("v") === "2"
+  const send = (message) => {
+    if (typeof hodriVerify !== "undefined") hodriVerify.postMessage(JSON.stringify(message))
+  }
+  const progress = (stage) => {
+    if (reportsProgress) send({ progress: stage })
+  }
+  let scriptFailed = false
+  const failScriptLoad = () => {
+    if (scriptFailed) return
+    scriptFailed = true
+    send({ error: "script_load" })
+  }
+  if (SITE_KEY === "") {
+    send({ error: "unconfigured" })
+    return
+  }
+  progress("page")
+  window.addEventListener("error", (event) => {
+    if (event.target && event.target.tagName === "SCRIPT") failScriptLoad()
+  }, true)
+  const recaptcha = document.createElement("script")
+  recaptcha.src = `https://www.google.com/recaptcha/enterprise.js?render=${encodeURIComponent(SITE_KEY)}`
+  recaptcha.async = true
+  recaptcha.onerror = failScriptLoad
+  recaptcha.onload = () => {
+    progress("script")
+    grecaptcha.enterprise.ready(async () => {
+      progress("ready")
+      try {
+        send({ token: await grecaptcha.enterprise.execute(SITE_KEY, { action: "signup" }) })
+      } catch (error) {
+        send({ error: String(error).slice(0, 200) })
+      }
+    })
+  }
+  document.head.appendChild(recaptcha)
+})()
+</script>
 <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
@@ -32,31 +76,5 @@
     <p><a href="/">hodri.app</a> · <a href="/privacy/">Gizlilik / Privacy</a></p>
   </footer>
 </main>
-<script>
-(() => {
-  const SITE_KEY = "6LdWM9EtAAAAAEQ70NKKbCeh_blDjW3agWpNGp10"
-  const send = (message) => {
-    if (typeof hodriVerify !== "undefined") hodriVerify.postMessage(JSON.stringify(message))
-  }
-  if (SITE_KEY === "") {
-    send({ error: "unconfigured" })
-    return
-  }
-  const recaptcha = document.createElement("script")
-  recaptcha.src = `https://www.google.com/recaptcha/enterprise.js?render=${encodeURIComponent(SITE_KEY)}`
-  recaptcha.async = true
-  recaptcha.onerror = () => send({ error: "script_load" })
-  recaptcha.onload = () => {
-    grecaptcha.enterprise.ready(async () => {
-      try {
-        send({ token: await grecaptcha.enterprise.execute(SITE_KEY, { action: "signup" }) })
-      } catch (error) {
-        send({ error: String(error).slice(0, 200) })
-      }
-    })
-  }
-  document.head.appendChild(recaptcha)
-})()
-</script>
 </body>
 </html>
