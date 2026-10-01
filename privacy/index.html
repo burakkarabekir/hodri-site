@@ -16,7 +16,7 @@
 
   <section id="tr">
     <h1>Gizlilik politikası</h1>
-    <p class="muted">Son güncelleme: 21 Eylül 2026</p>
+    <p class="muted">Son güncelleme: 29 Eylül 2026</p>
 
     <div class="card accent">
       <h2>Kısaca</h2>
@@ -36,13 +36,15 @@
     <table>
       <tr><th>Veri</th><th>Ne zaman</th><th>Neden</th></tr>
       <tr><td>Rastgele bir oyuncu kimliği</td><td>Uygulamayı ilk açtığında</td><td>Hesap açmadan oynayabilmen ve ilerlemenin bir yere bağlanabilmesi için</td></tr>
+      <tr><td>Misafir doğrulama kayıtları: kontrolün sonucu (Google Play Integrity etiketleri ya da reCAPTCHA puanı ve gerekçeleri), sunucunun kararı ile neden ve hata kodları, kaydın zamanı, tek kullanımlık rastgele bir değer, kayıt isteğine özgü ikinci bir rastgele kimlik ve IP adresinin anahtarlı özeti (hash; IPv6'da ağ bloğunun). Kayıtta adresin kendisi yer almaz.</td><td>Yeni bir oyuncu kaydı oluşturulmak istendiğinde, çoğunlukla uygulamayı ilk açtığında</td><td>Botların toplu hâlde sahte misafir oluşturmasını önlemek için</td></tr>
+      <tr><td>Oturum bilgileri: her oturumun IP adresi ve uygulama ya da tarayıcı bilgisi (user agent)</td><td>Oturum açıldığında ve her yenilendiğinde, misafirler dâhil</td><td>Oturum güvenliği için. Supabase Auth bunları oturum sürdükçe tutar; çıkış yaptığında ya da hesabın veya misafir kaydın silindiğinde silinir.</td></tr>
       <tr><td>E-posta adresi ve şifre</td><td>Yalnızca hesap açarsan</td><td>Giriş yapabilmen ve şifreni sıfırlayabilmen için. Şifren bizde okunabilir biçimde tutulmaz; yalnızca özeti (hash) saklanır.</td></tr>
       <tr><td>Kullanıcı adı</td><td>Yalnızca hesap açarsan</td><td>Sıralamada ve düellolarda diğer oyunculara görünen adın olarak</td></tr>
       <tr><td>Oyun kayıtları: düellolar, verdiğin cevaplar ve süreleri, puanın, galibiyetlerin</td><td>Oynadıkça</td><td>Düelloyu sunucuda hakemlik ederek adil tutmak, puanını ve sıralamayı hesaplamak için</td></tr>
       <tr><td>Dil tercihin (Türkçe / İngilizce)</td><td>Oturum açıldığında</td><td>Sana gönderilen e-postaların doğru dilde olması için</td></tr>
       <tr><td>Çökme ve performans raporları: telefon modeli, Android sürümü, uygulama sürümü, hatanın teknik dökümü, kuruluma özgü rastgele bir kimlik</td><td>Uygulama çöktüğünde; performans ölçümleri oturumların yaklaşık onda birinde</td><td>Hataları bulup düzeltmek için. Bu raporlar e-postanı, kullanıcı adını ya da cevaplarını içermez; ekran görüntüsü alınmaz.</td></tr>
       <tr><td>Kendi yazdığın desteler: başlık, açıklama, sorular ve cevaplar</td><td>Yalnızca bir deste oluşturursan (hesap gerekir)</td><td>Desteni telefonların arasında taşımak ve kodla davet ettiğin arkadaşlarına oynatmak için. Deste yalnızca sana ve davet ettiklerine görünür; herkese açık listelenmez. Sildiğinde 30 gün içinde kalıcı olarak silinir.</td></tr>
-<tr><td>İstek sayaçları</td><td>Sunucuya her istekte</td><td>Kötüye kullanımı sınırlamak için. Birkaç saat içinde silinir.</td></tr>
+      <tr><td>İstek sayaçları</td><td>Sunucuya her istekte</td><td>Kötüye kullanımı sınırlamak için. Birkaç saat içinde silinir.</td></tr>
     </table>
     </div>
     <p>İndirdiğin desteler, tema ve dil ayarların yalnızca telefonunda durur ve bize gönderilmez.</p>
@@ -51,12 +53,16 @@
     <p>Hesap açtıysan kullanıcı adın, puanın ve galibiyet sayın sıralamada diğer oyunculara görünür. Bir düelloda rakibin kullanıcı adını görür. Kaydedilmiş bir turun, rakip bulunamadığında başka bir oyuncunun karşısına "hayalet" olarak çıkabilir ve bu her zaman açıkça belirtilir. E-posta adresin hiçbir zaman başka bir oyuncuya gösterilmez.</p>
 
     <h2>Verilerini kimler işler</h2>
-    <p>Verilerini satmıyoruz ve reklam amacıyla kimseyle paylaşmıyoruz. Uygulamayı çalıştırmak için şu hizmet sağlayıcıları kullanıyoruz:</p>
+    <p>Verilerini satmıyoruz ve reklam amacıyla kimseyle paylaşmıyoruz. Uygulamayı çalıştırmak için şu şirketlerle çalışıyoruz; aksi belirtilmedikçe her biri verilerini bizim adımıza, hizmet sağlayıcımız olarak işler:</p>
     <ul>
       <li><strong>Supabase</strong> — veritabanı, oturum açma ve sunucu işlevleri. Veriler Frankfurt, Almanya'da tutulur.</li>
       <li><strong>Sentry</strong> — çökme ve performans raporları. Veriler Almanya'da tutulur.</li>
       <li><strong>Resend</strong> — doğrulama ve şifre sıfırlama kodlarını içeren e-postaların gönderimi. Bu amaçla e-posta adresin ABD merkezli bu şirkete aktarılır.</li>
+      <li><strong>Google Play Integrity</strong> — misafir doğrulaması. Yeni bir misafirin değiştirilmemiş Hodri uygulamasından ve gerçek bir Android cihazdan geldiğini doğrular. Bunun için telefonundaki Google Play, Google'a şunları gönderir: uygulamanın paket adı, sürümü ve imza sertifikası; cihazın bütünlük sinyalleri (Google Play hizmetlerinin ürettiği bir cihaz onay belirteci ve bir anahtar onay sertifikası); telefonda oturum açmış Google hesapları için uygulamanın Google Play lisans durumu. Her bağlantıda olduğu gibi, Google Play bağlandığında Google telefonun IP adresini de görür. Uygulamamız bu isteğe yalnızca tek kullanımlık rastgele bir değerden türetilmiş bir özet ekler; oyuncu kimliğini, e-postanı ya da kullanıcı adını eklemez. Sunucumuz oluşan belirteci, çözmesi için Google'a gönderir ve yanına IP adresini eklemez. Google Play bu işlemi bizim adımıza değil, <a href="https://play.google.com/about/play-terms/?hl=tr">Google Play Hizmet Şartları</a> ve <a href="https://policies.google.com/privacy?hl=tr">Google Gizlilik Politikası</a> kapsamında kendisi yürütür; Google'ın açıklamasına göre bu veriler hiçbir üçüncü tarafa aktarılmaz.</li>
+      <li><strong>Google reCAPTCHA</strong> (Google Cloud Fraud Defense'ın parçası) — yedek misafir doğrulaması. Play Integrity kullanılamadığında, örneğin telefonda Google Play yoksa ya da Play kontrolü başarısız olursa devreye girer. Kontrolü, Google'ın uygulamaya eklenmiş reCAPTCHA yazılımı (reCAPTCHA SDK) yapar ve ekranda hiçbir şey göstermez. Bu yazılım Google'a şunları gönderir: IP adresin, yazılımın sürümü, uygulamanın paket adı, doğrulanan işlemin adı (burada yeni kayıt), Google Play hizmetlerinden alınan bir cihaz bütünlüğü yanıtı, uygulamayı nasıl kullandığına dair bilgiler (örneğin bir ekranı kaç kez açtığın ya da nereye dokunduğun), telefonunda yüklü bazı uygulamalar hakkında bilgiler (zararlı uygulamalar dâhil) ve cihaz tanımlayıcıları. Yazılım, kontrol için telefonunda uygulamanın kendi deposuna veri kaydedebilir; bu veriler uygulamanın verileri silinene kadar kalabilir. Uygulamanın eski test sürümleri (210 ve 222) bu kontrolü yazılım yerine hodri.app'teki gizli bir doğrulama sayfasında yapar: oradaki reCAPTCHA Google'a IP adresini, tarayıcı ve cihaz bilgilerini gönderir ve uygulamanın web deposunda çerezler ya da benzeri veriler saklayabilir; bunlar da uygulamanın verileri silinene kadar kalabilir. Sunucumuz sonucu Google'a sorarken IP adresini de iletir. Google bu verileri bizim adımıza, <a href="https://cloud.google.com/terms">Google Cloud Hizmet Şartları</a>, <a href="https://cloud.google.com/terms/data-processing-addendum">Google Cloud Veri İşleme Eki</a> ve <a href="https://cloud.google.com/terms/service-terms">Google Cloud Hizmete Özel Şartlar</a> (45. bölüm) uyarınca, yalnızca bu hizmeti sunmak, sürdürmek ve yeni tehditlere karşı etkili tutmak için işler; kişiselleştirilmiş reklam için kullanmaz. Bu uygulama reCAPTCHA ile korunmaktadır.</li>
+      <li><strong>GitHub</strong> — hodri.app web sitesinin barındırılması. Siteyi ziyaret ettiğinde ya da uygulamanın eski test sürümleri sitedeki doğrulama sayfasını arka planda açtığında, her web sitesi ziyaretinde olduğu gibi IP adresin ve tarayıcı bilgilerin ABD merkezli bu şirkete ulaşır. GitHub, ziyaretçilerin IP adreslerini kendi güvenliği için kaydeder ve saklar; bunu bizim adımıza değil, <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement">GitHub Gizlilik Bildirimi</a> kapsamında yapar.</li>
     </ul>
+    <p>Google Play Integrity ve reCAPTCHA kontrollerinde Google'a ulaşan veriler Türkiye dışında, Google'ın ya da alt işleyicilerinin tesislerinin bulunduğu ülkelerde işlenebilir.</p>
     <p>Uygulama ile sunucular arasındaki tüm trafik şifrelidir (HTTPS); şifrelenmemiş bağlantılar uygulama tarafından reddedilir.</p>
 
     <h2>Ne kadar süre saklıyoruz</h2>
@@ -64,6 +70,9 @@
       <li>Hesap verilerin, hesabını silene kadar saklanır.</li>
       <li>Hiç oynanmamış misafir kayıtları 60 gün hareketsizlikten sonra silinir.</li>
       <li>Çökme raporları en fazla 90 gün içinde kendiliğinden silinir.</li>
+      <li>Misafir doğrulama kayıtları, oluşturulduktan yaklaşık 2 gün sonra silinir. Bu kayıtlar oyuncu kimliğinle ya da hesabınla birlikte saklanmaz.</li>
+      <li>Kontrolün ürettiği belirteçler veritabanımıza hiç yazılmaz: her biri bir kez kullanılır ve oyuncu kaydın oluşturulmadan önce silinir. Belirteç yalnızca ilk oturum anahtarının içinde telefonuna bir kez geri döner ve bu anahtar değişene kadar sunucumuza giden isteklerde yer alır; uygulama anahtarı hemen, bu olmazsa bir sonraki yenilemede değiştirir.</li>
+      <li>Google, Play Integrity verilerini sabit bir saklama süresinin sonunda siler (<a href="https://developer.android.com/google/play/integrity/terms?hl=tr#data-safety">Google'ın Play Integrity veri açıklaması</a>); reCAPTCHA verilerini ise Google Cloud Veri İşleme Eki'nin silme hükümlerine göre siler.</li>
       <li>Hesabını sildiğinde bitmiş düellolar, rakibinin geçmişi bozulmasın diye adın olmadan kalır. Ayrıntılar: <a href="/delete-account/">Hesabını sil</a>.</li>
     </ul>
 
@@ -74,14 +83,14 @@
     <p>Hodri 13 yaşından küçük çocuklara yönelik değildir ve bilerek onlardan veri toplamayız. 13 yaşından küçük bir çocuğun hesap açtığını düşünüyorsan bize yaz, hesabı silelim.</p>
 
     <h2>Bu politikadaki değişiklikler</h2>
-    <p>Bu politikayı değiştirirsek yeni halini bu sayfada yayımlar ve yukarıdaki tarihi güncelleriz. Topladığımız veriyi artıran bir değişiklikte bunu uygulamanın içinde de duyururuz.</p>
+    <p>Bu politikayı değiştirirsek yeni hâlini bu sayfada yayımlar ve yukarıdaki tarihi güncelleriz. Topladığımız veriyi artıran bir değişiklikte bunu uygulamanın içinde de duyururuz.</p>
   </section>
 
   <hr>
 
   <section id="en" lang="en">
     <h1>Privacy policy</h1>
-    <p class="muted">Last updated: 21 September 2026</p>
+    <p class="muted">Last updated: 29 September 2026</p>
 
     <div class="card accent">
       <h2>In short</h2>
@@ -101,13 +110,15 @@
     <table>
       <tr><th>Data</th><th>When</th><th>Why</th></tr>
       <tr><td>A random player id</td><td>The first time you open the app</td><td>So you can play without an account and your progress has something to attach to</td></tr>
+      <tr><td>Guest verification records: the result of the check (Google Play Integrity labels, or a reCAPTCHA score and its reasons), the server's decision with its reason and error codes, the time, a one-time random value, a second random id for the sign-up request and a keyed hash of your IP address (for IPv6, of its network block). The record does not hold the address itself.</td><td>Whenever a new player record is about to be created, usually the first time you open the app</td><td>To stop bots from creating fake guests in bulk</td></tr>
+      <tr><td>Session details: the IP address and the app or browser details (user agent) of each sign-in session</td><td>When a session starts and each time it is refreshed, guests included</td><td>For session security. Supabase Auth keeps them while the session lasts; they are deleted when you sign out or when your account or guest record is deleted.</td></tr>
       <tr><td>Email address and password</td><td>Only if you create an account</td><td>So you can sign in and reset your password. We never hold your password in readable form; only a hash of it is stored.</td></tr>
       <tr><td>Username</td><td>Only if you create an account</td><td>As the name other players see on the leaderboard and in duels</td></tr>
       <tr><td>Game records: duels, the answers you gave and how long they took, your rating, your wins</td><td>As you play</td><td>To referee duels on the server so they stay fair, and to work out ratings and the leaderboard</td></tr>
       <tr><td>Your language choice (Turkish / English)</td><td>When a session starts</td><td>So the emails we send you are in the right language</td></tr>
       <tr><td>Crash and performance reports: phone model, Android version, app version, a technical trace of the error, a random id specific to the installation</td><td>When the app crashes; performance measurements in roughly one session in ten</td><td>To find and fix faults. These reports do not contain your email, your username or your answers, and no screenshots are taken.</td></tr>
       <tr><td>Decks you write yourself: title, description, questions and answers</td><td>Only if you create a deck (an account is required)</td><td>To carry your deck between your phones and let the friends you invite by code play it. The deck is visible only to you and to the people you invite; it is never listed publicly. When you delete it, it is removed for good within 30 days.</td></tr>
-<tr><td>Request counters</td><td>On every request to the server</td><td>To limit abuse. Deleted within a few hours.</td></tr>
+      <tr><td>Request counters</td><td>On every request to the server</td><td>To limit abuse. Deleted within a few hours.</td></tr>
     </table>
     </div>
     <p>The decks you download and your theme and language settings stay on your phone and are not sent to us.</p>
@@ -116,12 +127,16 @@
     <p>If you have an account, your username, rating and number of wins are visible to other players on the leaderboard. In a duel your opponent sees your username. A recorded run of yours may be played against another player as a "ghost" when no live opponent is found, and that is always clearly marked. Your email address is never shown to another player.</p>
 
     <h2>Who processes your data</h2>
-    <p>We do not sell your data or share it with anyone for advertising. We use these service providers to run the app:</p>
+    <p>We do not sell your data or share it with anyone for advertising. We rely on these companies to run the app; unless an entry says otherwise, each processes your data on our behalf, as our service provider:</p>
     <ul>
       <li><strong>Supabase</strong> — database, sign-in and server functions. Data is held in Frankfurt, Germany.</li>
       <li><strong>Sentry</strong> — crash and performance reports. Data is held in Germany.</li>
       <li><strong>Resend</strong> — delivery of the emails that carry verification and password reset codes. For that purpose your email address is transferred to this US-based company.</li>
+      <li><strong>Google Play Integrity</strong> — guest verification. It checks that a new guest comes from an unmodified Hodri app on a genuine Android device. For that, Google Play on your phone sends Google the app's package name, version and signing certificate; the device's integrity signals (a device attestation token that Google Play services generates, and a key attestation certificate); and the app's Google Play licence status for the Google accounts signed in on the phone. As with any connection, Google also sees the phone's IP address when Google Play contacts it. Our app adds only a hash derived from a one-time random value; it adds no player id, email or username. Our server sends the resulting token to Google to be decoded and does not send your IP address with it. Google Play does this processing itself, not on our behalf, under the <a href="https://play.google.com/about/play-terms/">Google Play Terms of Service</a> and the <a href="https://policies.google.com/privacy">Google Privacy Policy</a>; according to Google, this data is not transferred to any third parties.</li>
+      <li><strong>Google reCAPTCHA</strong> (part of Google Cloud Fraud Defense) — fallback guest verification. It takes over when Play Integrity cannot be used, for example when the phone has no Google Play or the Play check fails. The check is run by Google's reCAPTCHA software built into the app (the reCAPTCHA SDK), which shows nothing on screen. It sends Google your IP address, its own version, the app's package name, the name of the action being checked (here, signing up), a device integrity response from Google Play services, information about how you use the app (for example, how often you open a screen or where you tap), information about some of the apps installed on your phone (malicious ones included) and device identifiers. It may save data for the check in the app's own storage on your phone, where it can stay until the app's data is cleared. Earlier test versions of the app (210 and 222) run this check on a hidden verification page on hodri.app instead: reCAPTCHA there sends Google your IP address and browser and device information, and may keep cookies or similar data in the app's web storage, where they too can stay until the app's data is cleared. When our server asks Google for the result, it passes on your IP address too. Google processes this data on our behalf under the <a href="https://cloud.google.com/terms">Google Cloud Terms of Service</a>, the <a href="https://cloud.google.com/terms/data-processing-addendum">Google Cloud Data Processing Addendum</a> and the <a href="https://cloud.google.com/terms/service-terms">Google Cloud Service Specific Terms</a> (section 45), only to provide and maintain the service and keep it effective against new threats, and not for personalised advertising. This app is protected by reCAPTCHA.</li>
+      <li><strong>GitHub</strong> — hosting of the hodri.app website. When you visit the site, or when earlier test versions of the app open its verification page in the background, your IP address and browser information reach this US-based company, as with any website visit. GitHub logs and stores visitors' IP addresses for its own security, not on our behalf, under the <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement">GitHub Privacy Statement</a>.</li>
     </ul>
+    <p>For both Google checks, the data that reaches Google may be processed outside Türkiye, in any country where Google or its subprocessors have facilities.</p>
     <p>All traffic between the app and the servers is encrypted (HTTPS); the app refuses unencrypted connections.</p>
 
     <h2>How long we keep it</h2>
@@ -129,6 +144,9 @@
       <li>Account data is kept until you delete your account.</li>
       <li>Guest records that never played are deleted after 60 days of inactivity.</li>
       <li>Crash reports expire on their own within 90 days at most.</li>
+      <li>Guest verification records are deleted about 2 days after they are made. These records are not stored with your player id or your account.</li>
+      <li>The tokens the check produces are never written to our database: each one is used once and deleted before your player record is created. A token comes back to your phone only once, inside the first session key, and goes with the app's requests to our server until that key is replaced; the app replaces it straight away, or at the next refresh if that fails.</li>
+      <li>Google deletes Play Integrity data after a fixed retention period (<a href="https://developer.android.com/google/play/integrity/terms#data-safety">Google's note on Play Integrity data</a>), and deletes reCAPTCHA data under the deletion terms of the Google Cloud Data Processing Addendum.</li>
       <li>When you delete your account, finished duels are kept without your name so that your opponent's history is not broken. Details: <a href="/delete-account/#en">Delete your account</a>.</li>
     </ul>
 
